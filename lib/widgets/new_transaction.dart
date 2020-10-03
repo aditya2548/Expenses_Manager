@@ -4,14 +4,20 @@ import 'package:fluttertoast/fluttertoast.dart';
 //  Stateless widget to store the details of new transaction
 //  takes addTransaction function through constructor, which are passed through the stateful widget
 //  UserTransactions (connecting stateless widgets NewTransactions and TransactionsList )
-class NewTransaction extends StatelessWidget {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
+class NewTransaction extends StatefulWidget {
   final Function _addTransaction;
 
   NewTransaction(this._addTransaction);
 
-  //  Function to be executed when enter(keyboard) or add transaction are pressed
+  @override
+  _NewTransactionState createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
+
   void submitData() {
     //  Validating if entered data is correct
     //    ->  non empty title
@@ -31,7 +37,10 @@ class NewTransaction extends StatelessWidget {
           fontSize: 16.0);
       return;
     }
-    _addTransaction(titleController.text, double.parse(amountController.text));
+    widget._addTransaction(
+        titleController.text, double.parse(amountController.text));
+
+    Navigator.of(context).pop();
   }
 
   @override
