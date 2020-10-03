@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-//  Stateless widget to store the details of new transaction
-//  takes addTransaction function through constructor, which are passed through the stateful widget
-//  UserTransactions (connecting stateless widgets NewTransactions and TransactionsList )
+//  Stateful widget to store the details of new transaction in a bottom sheet
+//  takes addTransaction function through constructor which is triggered by
+//  floatingActionButton or actionBar button
 class NewTransaction extends StatefulWidget {
   final Function _addTransaction;
 
@@ -32,8 +32,8 @@ class _NewTransactionState extends State<NewTransaction> {
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
+          backgroundColor: Theme.of(context).errorColor,
+          textColor: Theme.of(context).primaryColor,
           fontSize: 16.0);
       return;
     }
@@ -74,7 +74,7 @@ class _NewTransactionState extends State<NewTransaction> {
             FlatButton(
               child: Text(
                 "Add Transaction",
-                style: TextStyle(color: Colors.purple),
+                style: TextStyle(color: Theme.of(context).primaryColorDark),
               ),
               onPressed: submitData,
             ),

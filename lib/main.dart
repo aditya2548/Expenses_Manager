@@ -10,6 +10,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Expenses Manager",
+      theme: ThemeData(
+        primarySwatch: Colors.deepOrange,
+      ),
       home: HomePage(),
     );
   }
@@ -51,6 +54,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  //  function to display NewTransaction widget in a bottom sheet
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
