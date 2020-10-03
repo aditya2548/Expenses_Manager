@@ -11,8 +11,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Expenses Manager",
       theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-      ),
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          fontFamily: 'QuickSand',
+          textTheme: ThemeData.dark().textTheme.copyWith(
+                headline1: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.dark().textTheme.copyWith(
+                  headline1: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'OpenSans',
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+          )),
       home: HomePage(),
     );
   }

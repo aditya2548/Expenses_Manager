@@ -51,10 +51,7 @@ class TransactionList extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         child: Text(
                           _transactions[index].title,
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                          style: Theme.of(context).textTheme.headline1,
                         ),
                       ),
                     ),
