@@ -44,18 +44,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   //  List of transactions with some dummy transactions
   final List<Transaction> _transactions = [
-    Transaction(
-      id: "t1",
-      title: "Item 1",
-      price: 10,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "t2",
-      title: "Item 2",
-      price: 20,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: "t1",
+    //   title: "Item 1",
+    //   price: 10,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: "t2",
+    //   title: "Item 2",
+    //   price: 20,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   //  Adds a new transaction to the list whenever Add Transaction is pressed or enter is pressed in keyboard

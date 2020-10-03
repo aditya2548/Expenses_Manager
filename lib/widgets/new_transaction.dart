@@ -53,21 +53,27 @@ class _NewTransactionState extends State<NewTransaction> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             TextField(
-              style: TextStyle(fontSize: 14),
+              style: Theme.of(context).textTheme.headline1,
               //  Used to submit data when enter is pressed from keyboard (using dummy returned string "_")
               onSubmitted: (_) => submitData(),
               decoration: InputDecoration(
                   labelText: "Title",
+                  labelStyle: TextStyle(
+                    fontSize: 10,
+                  ),
                   contentPadding: EdgeInsets.fromLTRB(5, 2, 2, 5)),
               controller: titleController,
             ),
             TextField(
-              style: TextStyle(fontSize: 14),
+              style: Theme.of(context).textTheme.headline1,
               //  Used to submit data when enter is pressed from keyboard (using dummy returned string "_")
               onSubmitted: (_) => submitData(),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                   labelText: "Amount",
+                  labelStyle: TextStyle(
+                    fontSize: 10,
+                  ),
                   contentPadding: EdgeInsets.fromLTRB(5, 2, 2, 5)),
               controller: amountController,
             ),
