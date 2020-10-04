@@ -14,9 +14,11 @@ class NewTransaction extends StatefulWidget {
 }
 
 class _NewTransactionState extends State<NewTransaction> {
+  //  TextEditingController to handle and store text input
   final titleController = TextEditingController();
-
   final amountController = TextEditingController();
+  //  focusnode to switch to amount textfield when enter pressed on title field
+  final amountFocus = FocusNode();
 
   void submitData() {
     //  Validating if entered data is correct
@@ -54,8 +56,11 @@ class _NewTransactionState extends State<NewTransaction> {
           children: [
             TextField(
               style: Theme.of(context).textTheme.headline1,
-              //  Used to submit data when enter is pressed from keyboard (using dummy returned string "_")
-              onSubmitted: (_) => submitData(),
+              //  Used to go to next entry(amount) when enter is pressed from keyboard (using dummy returned string "_")
+              textInputAction: TextInputAction.next,
+              onSubmitted: (_) =>
+                  FocusScope.of(context).requestFocus(amountFocus),
+              autofocus: true,
               decoration: InputDecoration(
                   labelText: "Title",
                   labelStyle: TextStyle(
@@ -67,6 +72,7 @@ class _NewTransactionState extends State<NewTransaction> {
             TextField(
               style: Theme.of(context).textTheme.headline1,
               //  Used to submit data when enter is pressed from keyboard (using dummy returned string "_")
+              focusNode: amountFocus,
               onSubmitted: (_) => submitData(),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
