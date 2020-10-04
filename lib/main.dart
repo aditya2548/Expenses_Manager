@@ -61,7 +61,8 @@ class _HomePageState extends State<HomePage> {
     //   date: DateTime.now(),
     // ),
   ];
-
+  //  bool for show chart switch
+  bool showChart = false;
   //  Getter to fetch this week's transactions
   List<Transaction> get _weeklyTransactions {
     return _transactions
@@ -140,6 +141,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //  Variable to know device orientation
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+    //  Appbar stored in variable to get appBar height
     final appBar = AppBar(
       title: Text("Expenses Manager"),
       actions: [
@@ -148,26 +153,62 @@ class _HomePageState extends State<HomePage> {
             onPressed: () => _startAddNewTransaction(context)),
       ],
     );
+
+    //  TxList Wizard stored in a variable
+    final txListWizard = Container(
+        height: (MediaQuery.of(context).size.height -
+                appBar.preferredSize.height -
+                MediaQuery.of(context).padding.top) *
+            0.7,
+        child: TransactionList(_transactions, _deleteTransaction));
+
+    //  Chart widget to display chart in landscape(factor = 0.7)
+    final chartWidgetBig = Container(
+      height: (MediaQuery.of(context).size.height -
+              appBar.preferredSize.height -
+              MediaQuery.of(context).padding.top) *
+          0.7,
+      width: MediaQuery.of(context).size.width * 0.9,
+      child: Chart(_weeklyTransactions),
+    );
+    //  Chart widget to display chart in portrait(factor = 0.3)
+    final chartWidgetSmall = Container(
+      height: (MediaQuery.of(context).size.height -
+              appBar.preferredSize.height -
+              MediaQuery.of(context).padding.top) *
+          0.3,
+      child: Chart(_weeklyTransactions),
+    );
+
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            //  Display chart of this week's transactions
-            Container(
-              height: (MediaQuery.of(context).size.height -
-                      appBar.preferredSize.height -
-                      MediaQuery.of(context).padding.top) *
-                  0.3,
-              child: Chart(_weeklyTransactions),
-            ),
-            // stateful widget which gets updated whenever new transaction is added
-            Container(
-                height: (MediaQuery.of(context).size.height -
-                        appBar.preferredSize.height -
-                        MediaQuery.of(context).padding.top) *
-                    0.7,
-                child: TransactionList(_transactions, _deleteTransaction)),
+            //  Switch(for chart and list) which is visible only in landscape mode
+            if (isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Display chart",
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                  Switch(
+                      value: showChart,
+                      onChanged: (val) {
+                        setState(() {
+                          showChart = val;
+                        });
+                      })
+                ],
+              ),
+            //  if in portrait mode, display both chart and list
+            if (!isLandscape) chartWidgetSmall,
+            if (!isLandscape) txListWizard,
+
+            //  if in landscape mode, display one of chart and list depending on switch
+            if (isLandscape) showChart == true ? chartWidgetBig : txListWizard,
           ],
         ),
       ),
