@@ -54,13 +54,16 @@ class _NewTransactionState extends State<NewTransaction> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
+            Container(
+              height: 5,
+              color: Theme.of(context).primaryColorDark,
+            ),
             TextField(
               style: Theme.of(context).textTheme.headline1,
               //  Used to go to next entry(amount) when enter is pressed from keyboard (using dummy returned string "_")
               textInputAction: TextInputAction.next,
               onSubmitted: (_) =>
                   FocusScope.of(context).requestFocus(amountFocus),
-              autofocus: true,
               decoration: InputDecoration(
                   labelText: "Title",
                   labelStyle: TextStyle(
@@ -68,6 +71,9 @@ class _NewTransactionState extends State<NewTransaction> {
                   ),
                   contentPadding: EdgeInsets.fromLTRB(5, 2, 2, 5)),
               controller: titleController,
+            ),
+            SizedBox(
+              height: 10,
             ),
             TextField(
               style: Theme.of(context).textTheme.headline1,
@@ -83,12 +89,42 @@ class _NewTransactionState extends State<NewTransaction> {
                   contentPadding: EdgeInsets.fromLTRB(5, 2, 2, 5)),
               controller: amountController,
             ),
-            FlatButton(
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "No date chosen",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black,
+                    ),
+                  ),
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Choose a date",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    textColor: Theme.of(context).primaryColor,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            RaisedButton(
               child: Text(
                 "Add Transaction",
-                style: TextStyle(color: Theme.of(context).primaryColorDark),
               ),
+              textColor: Theme.of(context).textTheme.button.color,
               onPressed: submitData,
+              color: Theme.of(context).primaryColorDark,
             ),
           ],
         ),

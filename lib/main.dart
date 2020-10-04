@@ -22,11 +22,12 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
+                button: TextStyle(color: Colors.white),
               ),
           appBarTheme: AppBarTheme(
             textTheme: ThemeData.dark().textTheme.copyWith(
                   headline1: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontFamily: 'OpenSans',
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
