@@ -141,9 +141,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //  Variable to store mediaQuery metadata
+    final mediaQuery = MediaQuery.of(context);
     //  Variable to know device orientation
-    bool isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    bool isLandscape = mediaQuery.orientation == Orientation.landscape;
     //  Appbar stored in variable to get appBar height
     final appBar = AppBar(
       title: Text("Expenses Manager"),
@@ -156,26 +157,26 @@ class _HomePageState extends State<HomePage> {
 
     //  TxList Wizard stored in a variable
     final txListWizard = Container(
-        height: (MediaQuery.of(context).size.height -
+        height: (mediaQuery.size.height -
                 appBar.preferredSize.height -
-                MediaQuery.of(context).padding.top) *
+                mediaQuery.padding.top) *
             0.7,
         child: TransactionList(_transactions, _deleteTransaction));
 
     //  Chart widget to display chart in landscape(factor = 0.7)
     final chartWidgetBig = Container(
-      height: (MediaQuery.of(context).size.height -
+      height: (mediaQuery.size.height -
               appBar.preferredSize.height -
-              MediaQuery.of(context).padding.top) *
+              mediaQuery.padding.top) *
           0.7,
-      width: MediaQuery.of(context).size.width * 0.9,
+      width: mediaQuery.size.width * 0.9,
       child: Chart(_weeklyTransactions),
     );
     //  Chart widget to display chart in portrait(factor = 0.3)
     final chartWidgetSmall = Container(
-      height: (MediaQuery.of(context).size.height -
+      height: (mediaQuery.size.height -
               appBar.preferredSize.height -
-              MediaQuery.of(context).padding.top) *
+              mediaQuery.padding.top) *
           0.3,
       child: Chart(_weeklyTransactions),
     );
