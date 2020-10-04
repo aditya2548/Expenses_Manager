@@ -9,8 +9,8 @@ import 'package:intl/intl.dart';
 //  An image is displayed if no transaction present
 class TransactionList extends StatelessWidget {
   final List<Transaction> _transactions;
-
-  TransactionList(this._transactions);
+  final Function _deleteTransaction;
+  TransactionList(this._transactions, this._deleteTransaction);
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +64,12 @@ class TransactionList extends StatelessWidget {
                         fontSize: 12,
                         color: Colors.black87,
                       ),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () =>
+                          _deleteTransaction(_transactions[index].id),
+                      color: Theme.of(context).errorColor,
                     ),
                   ),
                 );

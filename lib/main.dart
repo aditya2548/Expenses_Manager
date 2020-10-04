@@ -2,6 +2,7 @@ import 'package:Expenses_Manager/models/transaction.dart';
 import 'package:Expenses_Manager/widgets/chart.dart';
 import 'package:Expenses_Manager/widgets/new_transaction.dart';
 import 'package:Expenses_Manager/widgets/transactions_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -91,6 +92,42 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  //  To delete transaction with given id
+  void _deleteTransaction(String id) {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: Text("Do you want to delete the transaction?",
+              style:
+                  TextStyle(color: Theme.of(context).errorColor, fontSize: 15)),
+          elevation: 10,
+          actions: [
+            FlatButton(
+              onPressed: () {
+                setState(() {
+                  _transactions.removeWhere((element) => element.id == id);
+                });
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                "Yes",
+                style: TextStyle(
+                  color: Theme.of(context).errorColor,
+                ),
+              ),
+            ),
+            FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("No")),
+          ],
+        );
+      },
+    );
+  }
+
   //  function to display NewTransaction widget in a bottom sheet
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
@@ -118,7 +155,7 @@ class _HomePageState extends State<HomePage> {
             //  Display chart of this week's transactions
             Chart(_weeklyTransactions),
             // stateful widget which gets updated whenever new transaction is added
-            TransactionList(_transactions),
+            TransactionList(_transactions, _deleteTransaction),
           ],
         ),
       ),
