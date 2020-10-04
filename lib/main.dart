@@ -1,4 +1,5 @@
 import 'package:Expenses_Manager/models/transaction.dart';
+import 'package:Expenses_Manager/widgets/chart.dart';
 import 'package:Expenses_Manager/widgets/new_transaction.dart';
 import 'package:Expenses_Manager/widgets/transactions_list.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'QuickSand',
           textTheme: ThemeData.dark().textTheme.copyWith(
                 headline1: TextStyle(
+                  color: Colors.black,
                   fontFamily: 'OpenSans',
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(
             textTheme: ThemeData.dark().textTheme.copyWith(
                   headline1: TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontFamily: 'OpenSans',
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -57,6 +59,21 @@ class _HomePageState extends State<HomePage> {
     //   date: DateTime.now(),
     // ),
   ];
+
+  //  Getter to fetch this week's transactions
+  List<Transaction> get _weeklyTransactions {
+    return _transactions
+        .where(
+          (element) => element.date.isAfter(
+            DateTime.now().subtract(
+              Duration(
+                days: 7,
+              ),
+            ),
+          ),
+        )
+        .toList();
+  }
 
   //  Adds a new transaction to the list whenever Add Transaction is pressed or enter is pressed in keyboard
   void _addNewTransaction(String txTitle, double txAmount) {
@@ -96,16 +113,8 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(
-                child: Text(
-                  // child to hold chart of various details
-                  "Chart",
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+            //  Display chart of this week's transactions
+            Chart(_weeklyTransactions),
             // stateful widget which gets updated whenever new transaction is added
             TransactionList(_transactions),
           ],
