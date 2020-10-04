@@ -182,6 +182,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
@@ -195,7 +196,7 @@ class _HomePageState extends State<HomePage> {
                     "Display chart",
                     style: Theme.of(context).textTheme.headline1,
                   ),
-                  Switch(
+                  Switch.adaptive(
                       value: showChart,
                       onChanged: (val) {
                         setState(() {

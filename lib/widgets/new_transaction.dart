@@ -110,7 +110,6 @@ class _NewTransactionState extends State<NewTransaction> {
                 style: Theme.of(context).textTheme.headline1,
                 //  Used to submit data when enter is pressed from keyboard (using dummy returned string "_")
                 focusNode: _amountFocus,
-                onSubmitted: (_) => _dispDatePicker(),
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     labelText: "Amount",
