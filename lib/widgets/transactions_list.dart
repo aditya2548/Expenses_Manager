@@ -29,7 +29,7 @@ class TransactionList extends StatelessWidget {
                 Container(
                   height: 200,
                   child: Image.asset(
-                    "assets/images/404.jpeg",
+                    "assets/images/hacker.png",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -59,7 +59,7 @@ class TransactionList extends StatelessWidget {
                       ),
                     ),
                     subtitle: Text(
-                      DateFormat().format(_transactions[index].date),
+                      DateFormat.yMMMd().format(_transactions[index].date),
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.black87,
@@ -73,52 +73,3 @@ class TransactionList extends StatelessWidget {
     );
   }
 }
-
-// Card(
-//                   color: Theme.of(context).cardColor,
-//                   child: Row(
-//                     children: <Widget>[
-//                       Container(
-//                         width: 80,
-//                         height: 50,
-//                         margin: EdgeInsets.all(5),
-//                         decoration: BoxDecoration(
-//                           color: Theme.of(context).cardColor,
-//                           border: Border.all(
-//                               color: Theme.of(context).primaryColor,
-//                               width: 1.5),
-//                         ),
-//                         padding: EdgeInsets.all(2),
-//                         alignment: Alignment.center,
-//                         child: SingleChildScrollView(
-//                           scrollDirection: Axis.horizontal,
-//                           child: Text(
-//                             "Rs.${_transactions[index].price.toString()}",
-//                             style: TextStyle(
-//                                 color: Theme.of(context).primaryColorDark),
-//                             textAlign: TextAlign.center,
-//                           ),
-//                         ),
-//                       ),
-//                       Column(
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         children: <Widget>[
-//                           Container(
-//                             width: 250,
-//                             child: SingleChildScrollView(
-//                               scrollDirection: Axis.horizontal,
-//                               child: Text(
-//                                 _transactions[index].title,
-//                                 style: Theme.of(context).textTheme.headline1,
-//                               ),
-//                             ),
-//                           ),
-//                           Text(
-
-//                             ),
-//                           ),
-//                         ],
-//                       )
-//                     ],
-//                   ),
-//                 );

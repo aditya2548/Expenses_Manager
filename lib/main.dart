@@ -77,13 +77,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   //  Adds a new transaction to the list whenever Add Transaction is pressed or enter is pressed in keyboard
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime pickedDate) {
     // Currently using current DateTime as transaction id
     final newTx = Transaction(
         id: DateTime.now().toString(),
         title: txTitle,
         price: txAmount,
-        date: DateTime.now());
+        date: pickedDate);
 
     setState(() {
       _transactions.add(newTx);
